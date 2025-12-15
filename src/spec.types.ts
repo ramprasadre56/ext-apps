@@ -371,3 +371,31 @@ export interface McpUiResourceMeta {
   /** @description Visual boundary preference - true if UI prefers a visible border. */
   prefersBorder?: boolean;
 }
+
+/**
+ * @description Request to change the display mode of the UI.
+ * The host will respond with the actual display mode that was set,
+ * which may differ from the requested mode if not supported.
+ * @see {@link app.App.requestDisplayMode} for the method that sends this request
+ */
+export interface McpUiRequestDisplayModeRequest {
+  method: "ui/request-display-mode";
+  params: {
+    /** @description The display mode being requested. */
+    mode: McpUiDisplayMode;
+  };
+}
+
+/**
+ * @description Result from requesting a display mode change.
+ * @see {@link McpUiRequestDisplayModeRequest}
+ */
+export interface McpUiRequestDisplayModeResult {
+  /** @description The display mode that was actually set. May differ from requested if not supported. */
+  mode: McpUiDisplayMode;
+  /**
+   * Index signature required for MCP SDK `Protocol` class compatibility.
+   * Note: The schema intentionally omits this to enforce strict validation.
+   */
+  [key: string]: unknown;
+}

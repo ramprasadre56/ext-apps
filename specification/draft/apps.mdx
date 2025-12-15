@@ -537,6 +537,39 @@ Host behavior:
 * Host SHOULD add the message to the conversation context, preserving the specified role.
 * Host MAY request user consent.
 
+`ui/request-display-mode` - Request host to change display mode
+
+```typescript
+// Request
+{
+  jsonrpc: "2.0",
+  id: 3,
+  method: "ui/request-display-mode",
+  params: {
+    mode: "inline" | "fullscreen" | "pip"  // Requested display mode
+  }
+}
+
+// Success Response
+{
+  jsonrpc: "2.0",
+  id: 3,
+  result: {
+    mode: "inline" | "fullscreen" | "pip"  // Actual display mode set
+  }
+}
+```
+
+Host behavior:
+* Host SHOULD check if the requested mode is in `availableDisplayModes` from host context.
+* If the requested mode is available, Host SHOULD switch to that mode and return it in the response.
+* If the requested mode is not available, Host SHOULD return the current display mode in the response.
+* Host MAY coerce modes on certain platforms (e.g., "pip" to "fullscreen" on mobile).
+
+Guest UI behavior:
+* Guest UI SHOULD check `availableDisplayModes` in host context before requesting a mode change.
+* Guest UI MUST handle the response mode differing from the requested mode.
+
 #### Notifications (Host → UI)
 
 `ui/notifications/tool-input` - Host MUST send this notification with the complete tool arguments after the Guest UI's initialize request completes.

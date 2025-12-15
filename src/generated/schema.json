@@ -1545,6 +1545,67 @@
       },
       "additionalProperties": {}
     },
+    "McpUiRequestDisplayModeRequest": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "const": "ui/request-display-mode"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "description": "The display mode being requested.",
+              "anyOf": [
+                {
+                  "type": "string",
+                  "const": "inline"
+                },
+                {
+                  "type": "string",
+                  "const": "fullscreen"
+                },
+                {
+                  "type": "string",
+                  "const": "pip"
+                }
+              ]
+            }
+          },
+          "required": ["mode"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["method", "params"],
+      "additionalProperties": false
+    },
+    "McpUiRequestDisplayModeResult": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "mode": {
+          "description": "The display mode that was actually set. May differ from requested if not supported.",
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "inline"
+            },
+            {
+              "type": "string",
+              "const": "fullscreen"
+            },
+            {
+              "type": "string",
+              "const": "pip"
+            }
+          ]
+        }
+      },
+      "required": ["mode"],
+      "additionalProperties": {}
+    },
     "McpUiResourceCsp": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "type": "object",
