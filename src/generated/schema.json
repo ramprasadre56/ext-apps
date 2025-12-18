@@ -332,6 +332,10 @@
                       },
                       {
                         "type": "string",
+                        "const": "--color-text-ghost"
+                      },
+                      {
+                        "type": "string",
                         "const": "--color-text-info"
                       },
                       {
@@ -634,19 +638,39 @@
               "properties": {
                 "width": {
                   "description": "Viewport width in pixels (if fixed). Only pass width or maxWidth, not both.",
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {}
+                  ]
                 },
                 "height": {
                   "description": "Viewport height in pixels (if fixed). Only pass height or maxHeight, not both.",
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {}
+                  ]
                 },
                 "maxWidth": {
                   "description": "Maximum available viewport width in pixels (if constrained). Only pass width or maxWidth, not both.",
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {}
+                  ]
                 },
                 "maxHeight": {
                   "description": "Maximum available viewport height in pixels (if constrained). Only pass height or maxHeight, not both.",
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {}
+                  ]
                 }
               },
               "additionalProperties": false
@@ -957,6 +981,10 @@
                   },
                   {
                     "type": "string",
+                    "const": "--color-text-ghost"
+                  },
+                  {
+                    "type": "string",
                     "const": "--color-text-info"
                   },
                   {
@@ -1259,19 +1287,39 @@
           "properties": {
             "width": {
               "description": "Viewport width in pixels (if fixed). Only pass width or maxWidth, not both.",
-              "type": "number"
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {}
+              ]
             },
             "height": {
               "description": "Viewport height in pixels (if fixed). Only pass height or maxHeight, not both.",
-              "type": "number"
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {}
+              ]
             },
             "maxWidth": {
               "description": "Maximum available viewport width in pixels (if constrained). Only pass width or maxWidth, not both.",
-              "type": "number"
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {}
+              ]
             },
             "maxHeight": {
               "description": "Maximum available viewport height in pixels (if constrained). Only pass height or maxHeight, not both.",
-              "type": "number"
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {}
+              ]
             }
           },
           "additionalProperties": false
@@ -1423,6 +1471,10 @@
               {
                 "type": "string",
                 "const": "--color-text-inverse"
+              },
+              {
+                "type": "string",
+                "const": "--color-text-ghost"
               },
               {
                 "type": "string",
@@ -2115,6 +2167,10 @@
                       },
                       {
                         "type": "string",
+                        "const": "--color-text-ghost"
+                      },
+                      {
+                        "type": "string",
                         "const": "--color-text-info"
                       },
                       {
@@ -2417,19 +2473,39 @@
               "properties": {
                 "width": {
                   "description": "Viewport width in pixels (if fixed). Only pass width or maxWidth, not both.",
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {}
+                  ]
                 },
                 "height": {
                   "description": "Viewport height in pixels (if fixed). Only pass height or maxHeight, not both.",
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {}
+                  ]
                 },
                 "maxWidth": {
                   "description": "Maximum available viewport width in pixels (if constrained). Only pass width or maxWidth, not both.",
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {}
+                  ]
                 },
                 "maxHeight": {
                   "description": "Maximum available viewport height in pixels (if constrained). Only pass height or maxHeight, not both.",
-                  "type": "number"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {}
+                  ]
                 }
               },
               "additionalProperties": false
@@ -3209,6 +3285,10 @@
         },
         {
           "type": "string",
+          "const": "--color-text-ghost"
+        },
+        {
+          "type": "string",
           "const": "--color-text-info"
         },
         {
@@ -3519,6 +3599,10 @@
           {
             "type": "string",
             "const": "--color-text-inverse"
+          },
+          {
+            "type": "string",
+            "const": "--color-text-ghost"
           },
           {
             "type": "string",

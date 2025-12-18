@@ -43,6 +43,7 @@ export const McpUiStyleVariableKeySchema = z
     z.literal("--color-text-secondary"),
     z.literal("--color-text-tertiary"),
     z.literal("--color-text-inverse"),
+    z.literal("--color-text-ghost"),
     z.literal("--color-text-info"),
     z.literal("--color-text-danger"),
     z.literal("--color-text-success"),
@@ -567,28 +568,28 @@ export const McpUiHostContextSchema = z.looseObject({
     .object({
       /** @description Viewport width in pixels (if fixed). Only pass width or maxWidth, not both. */
       width: z
-        .number()
+        .union([z.number(), z.undefined()])
         .optional()
         .describe(
           "Viewport width in pixels (if fixed). Only pass width or maxWidth, not both.",
         ),
       /** @description Viewport height in pixels (if fixed). Only pass height or maxHeight, not both. */
       height: z
-        .number()
+        .union([z.number(), z.undefined()])
         .optional()
         .describe(
           "Viewport height in pixels (if fixed). Only pass height or maxHeight, not both.",
         ),
       /** @description Maximum available viewport width in pixels (if constrained). Only pass width or maxWidth, not both.*/
       maxWidth: z
-        .number()
+        .union([z.number(), z.undefined()])
         .optional()
         .describe(
           "Maximum available viewport width in pixels (if constrained). Only pass width or maxWidth, not both.",
         ),
       /** @description Maximum available viewport height in pixels (if constrained). Only pass height or maxHeight, not both. */
       maxHeight: z
-        .number()
+        .union([z.number(), z.undefined()])
         .optional()
         .describe(
           "Maximum available viewport height in pixels (if constrained). Only pass height or maxHeight, not both.",

@@ -56,6 +56,7 @@ export type McpUiStyleVariableKey =
   | "--color-text-secondary"
   | "--color-text-tertiary"
   | "--color-text-inverse"
+  | "--color-text-ghost"
   | "--color-text-info"
   | "--color-text-danger"
   | "--color-text-success"
@@ -327,13 +328,13 @@ export interface McpUiHostContext {
   /** @description Current and maximum dimensions available to the UI. */
   viewport?: {
     /** @description Viewport width in pixels (if fixed). Only pass width or maxWidth, not both. */
-    width?: number;
+    width?: number | undefined;
     /** @description Viewport height in pixels (if fixed). Only pass height or maxHeight, not both. */
-    height?: number;
+    height?: number | undefined;
     /** @description Maximum available viewport width in pixels (if constrained). Only pass width or maxWidth, not both.*/
-    maxWidth?: number;
+    maxWidth?: number | undefined;
     /** @description Maximum available viewport height in pixels (if constrained). Only pass height or maxHeight, not both. */
-    maxHeight?: number;
+    maxHeight?: number | undefined;
   };
   /** @description User's language and region preference in BCP 47 format. */
   locale?: string;
