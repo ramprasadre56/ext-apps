@@ -89,6 +89,79 @@
           "type": "object",
           "properties": {},
           "additionalProperties": false
+        },
+        "sandbox": {
+          "description": "Sandbox configuration applied by the host.",
+          "type": "object",
+          "properties": {
+            "permissions": {
+              "description": "Permissions granted by the host (camera, microphone, geolocation).",
+              "type": "object",
+              "properties": {
+                "camera": {
+                  "description": "Request camera access (Permission Policy `camera` feature).",
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                },
+                "microphone": {
+                  "description": "Request microphone access (Permission Policy `microphone` feature).",
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                },
+                "geolocation": {
+                  "description": "Request geolocation access (Permission Policy `geolocation` feature).",
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                },
+                "clipboardWrite": {
+                  "description": "Request clipboard write access (Permission Policy `clipboard-write` feature).",
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            },
+            "csp": {
+              "description": "CSP domains approved by the host.",
+              "type": "object",
+              "properties": {
+                "connectDomains": {
+                  "description": "Origins for network requests (fetch/XHR/WebSocket).",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "resourceDomains": {
+                  "description": "Origins for static resources (scripts, images, styles, fonts).",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "frameDomains": {
+                  "description": "Origins for nested iframes (frame-src directive).",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "baseUriDomains": {
+                  "description": "Allowed base URIs for the document (base-uri directive).",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
         }
       },
       "additionalProperties": false
@@ -2231,6 +2304,79 @@
               "type": "object",
               "properties": {},
               "additionalProperties": false
+            },
+            "sandbox": {
+              "description": "Sandbox configuration applied by the host.",
+              "type": "object",
+              "properties": {
+                "permissions": {
+                  "description": "Permissions granted by the host (camera, microphone, geolocation).",
+                  "type": "object",
+                  "properties": {
+                    "camera": {
+                      "description": "Request camera access (Permission Policy `camera` feature).",
+                      "type": "object",
+                      "properties": {},
+                      "additionalProperties": false
+                    },
+                    "microphone": {
+                      "description": "Request microphone access (Permission Policy `microphone` feature).",
+                      "type": "object",
+                      "properties": {},
+                      "additionalProperties": false
+                    },
+                    "geolocation": {
+                      "description": "Request geolocation access (Permission Policy `geolocation` feature).",
+                      "type": "object",
+                      "properties": {},
+                      "additionalProperties": false
+                    },
+                    "clipboardWrite": {
+                      "description": "Request clipboard write access (Permission Policy `clipboard-write` feature).",
+                      "type": "object",
+                      "properties": {},
+                      "additionalProperties": false
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "csp": {
+                  "description": "CSP domains approved by the host.",
+                  "type": "object",
+                  "properties": {
+                    "connectDomains": {
+                      "description": "Origins for network requests (fetch/XHR/WebSocket).",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "resourceDomains": {
+                      "description": "Origins for static resources (scripts, images, styles, fonts).",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "frameDomains": {
+                      "description": "Origins for nested iframes (frame-src directive).",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "baseUriDomains": {
+                      "description": "Allowed base URIs for the document (base-uri directive).",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
             }
           },
           "additionalProperties": false,
@@ -3532,6 +3678,37 @@
           },
           "additionalProperties": false
         },
+        "permissions": {
+          "description": "Sandbox permissions requested by the UI.",
+          "type": "object",
+          "properties": {
+            "camera": {
+              "description": "Request camera access (Permission Policy `camera` feature).",
+              "type": "object",
+              "properties": {},
+              "additionalProperties": false
+            },
+            "microphone": {
+              "description": "Request microphone access (Permission Policy `microphone` feature).",
+              "type": "object",
+              "properties": {},
+              "additionalProperties": false
+            },
+            "geolocation": {
+              "description": "Request geolocation access (Permission Policy `geolocation` feature).",
+              "type": "object",
+              "properties": {},
+              "additionalProperties": false
+            },
+            "clipboardWrite": {
+              "description": "Request clipboard write access (Permission Policy `clipboard-write` feature).",
+              "type": "object",
+              "properties": {},
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
         "domain": {
           "description": "Dedicated origin for widget sandbox.",
           "type": "string"
@@ -3539,6 +3716,37 @@
         "prefersBorder": {
           "description": "Visual boundary preference - true if UI prefers a visible border.",
           "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "McpUiResourcePermissions": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "camera": {
+          "description": "Request camera access (Permission Policy `camera` feature).",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "microphone": {
+          "description": "Request microphone access (Permission Policy `microphone` feature).",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "geolocation": {
+          "description": "Request geolocation access (Permission Policy `geolocation` feature).",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "clipboardWrite": {
+          "description": "Request clipboard write access (Permission Policy `clipboard-write` feature).",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
         }
       },
       "additionalProperties": false
@@ -3635,6 +3843,37 @@
                   "items": {
                     "type": "string"
                   }
+                }
+              },
+              "additionalProperties": false
+            },
+            "permissions": {
+              "description": "Sandbox permissions from resource metadata.",
+              "type": "object",
+              "properties": {
+                "camera": {
+                  "description": "Request camera access (Permission Policy `camera` feature).",
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                },
+                "microphone": {
+                  "description": "Request microphone access (Permission Policy `microphone` feature).",
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                },
+                "geolocation": {
+                  "description": "Request geolocation access (Permission Policy `geolocation` feature).",
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
+                },
+                "clipboardWrite": {
+                  "description": "Request clipboard write access (Permission Policy `clipboard-write` feature).",
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
                 }
               },
               "additionalProperties": false

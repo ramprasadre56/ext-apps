@@ -220,6 +220,8 @@ export interface McpUiSandboxResourceReadyNotification {
     sandbox?: string;
     /** @description CSP configuration from resource metadata. */
     csp?: McpUiResourceCsp;
+    /** @description Sandbox permissions from resource metadata. */
+    permissions?: McpUiResourcePermissions;
   };
 }
 
@@ -423,6 +425,13 @@ export interface McpUiHostCapabilities {
   };
   /** @description Host accepts log messages. */
   logging?: {};
+  /** @description Sandbox configuration applied by the host. */
+  sandbox?: {
+    /** @description Permissions granted by the host (camera, microphone, geolocation). */
+    permissions?: McpUiResourcePermissions;
+    /** @description CSP domains approved by the host. */
+    csp?: McpUiResourceCsp;
+  };
 }
 
 /**
@@ -499,11 +508,29 @@ export interface McpUiResourceCsp {
 }
 
 /**
+ * @description Sandbox permissions requested by the UI resource.
+ * Hosts MAY honor these by setting appropriate iframe `allow` attributes.
+ * Apps SHOULD NOT assume permissions are granted; use JS feature detection as fallback.
+ */
+export interface McpUiResourcePermissions {
+  /** @description Request camera access (Permission Policy `camera` feature). */
+  camera?: {};
+  /** @description Request microphone access (Permission Policy `microphone` feature). */
+  microphone?: {};
+  /** @description Request geolocation access (Permission Policy `geolocation` feature). */
+  geolocation?: {};
+  /** @description Request clipboard write access (Permission Policy `clipboard-write` feature). */
+  clipboardWrite?: {};
+}
+
+/**
  * @description UI Resource metadata for security and rendering configuration.
  */
 export interface McpUiResourceMeta {
   /** @description Content Security Policy configuration. */
   csp?: McpUiResourceCsp;
+  /** @description Sandbox permissions requested by the UI. */
+  permissions?: McpUiResourcePermissions;
   /** @description Dedicated origin for widget sandbox. */
   domain?: string;
   /** @description Visual boundary preference - true if UI prefers a visible border. */

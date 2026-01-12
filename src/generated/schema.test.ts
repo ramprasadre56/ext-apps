@@ -47,6 +47,10 @@ export type McpUiResourceCspSchemaInferredType = z.infer<
   typeof generated.McpUiResourceCspSchema
 >;
 
+export type McpUiResourcePermissionsSchemaInferredType = z.infer<
+  typeof generated.McpUiResourcePermissionsSchema
+>;
+
 export type McpUiSizeChangedNotificationSchemaInferredType = z.infer<
   typeof generated.McpUiSizeChangedNotificationSchema
 >;
@@ -173,6 +177,12 @@ expectType<McpUiSandboxProxyReadyNotificationSchemaInferredType>(
 );
 expectType<spec.McpUiResourceCsp>({} as McpUiResourceCspSchemaInferredType);
 expectType<McpUiResourceCspSchemaInferredType>({} as spec.McpUiResourceCsp);
+expectType<spec.McpUiResourcePermissions>(
+  {} as McpUiResourcePermissionsSchemaInferredType,
+);
+expectType<McpUiResourcePermissionsSchemaInferredType>(
+  {} as spec.McpUiResourcePermissions,
+);
 expectType<spec.McpUiSizeChangedNotification>(
   {} as McpUiSizeChangedNotificationSchemaInferredType,
 );
