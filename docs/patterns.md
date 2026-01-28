@@ -8,7 +8,7 @@ This document covers common patterns and recipes for building MCP Apps.
 
 ## Tools that are private to Apps
 
-Set {@link types!McpUiToolMeta.visibility `Tool._meta.ui.visibility`} to `["app"]` to make tools only callable by Apps (hidden from the model). This is useful for UI-driven actions like updating quantities, toggling settings, or other interactions that shouldn't appear in the model's tool list.
+Set {@link types!McpUiToolMeta.visibility `Tool._meta.ui.visibility`} to `["app"]` to make tools only callable by Apps (hidden from the model). This is useful for UI-driven actions like updating server-side state, polling, or other interactions that shouldn't appear in the model's tool list.
 
 <!-- prettier-ignore -->
 ```ts source="../src/server/index.examples.ts#registerAppTool_appOnlyVisibility"
@@ -34,6 +34,71 @@ registerAppTool(
 
 > [!NOTE]
 > For full examples that implement this pattern, see: [`examples/system-monitor-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/system-monitor-server) and [`examples/pdf-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/pdf-server).
+
+## Polling for live data
+
+For real-time dashboards or monitoring views, use an app-only tool (with `visibility: ["app"]`) that the App polls at regular intervals.
+
+**Vanilla JS:**
+
+<!-- prettier-ignore -->
+```ts source="./patterns.tsx#pollingVanillaJs"
+let intervalId: number | null = null;
+
+async function poll() {
+  const result = await app.callServerTool({
+    name: "poll-data",
+    arguments: {},
+  });
+  updateUI(result.structuredContent);
+}
+
+function startPolling() {
+  if (intervalId !== null) return;
+  poll();
+  intervalId = window.setInterval(poll, 2000);
+}
+
+function stopPolling() {
+  if (intervalId === null) return;
+  clearInterval(intervalId);
+  intervalId = null;
+}
+
+// Clean up when host tears down the view
+app.onteardown = async () => {
+  stopPolling();
+  return {};
+};
+```
+
+**React:**
+
+<!-- prettier-ignore -->
+```tsx source="./patterns.tsx#pollingReact"
+useEffect(() => {
+  if (!app) return;
+  let cancelled = false;
+
+  async function poll() {
+    const result = await app!.callServerTool({
+      name: "poll-data",
+      arguments: {},
+    });
+    if (!cancelled) setData(result.structuredContent);
+  }
+
+  poll();
+  const id = setInterval(poll, 2000);
+  return () => {
+    cancelled = true;
+    clearInterval(id);
+  };
+}, [app]);
+```
+
+> [!NOTE]
+> For a full example that implements this pattern, see: [`examples/system-monitor-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/system-monitor-server).
 
 ## Reading large amounts of data via chunked tool calls
 

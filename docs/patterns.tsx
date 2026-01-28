@@ -23,6 +23,72 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
 /**
+ * Example: Polling for live data (Vanilla JS)
+ */
+function pollingVanillaJs(app: App, updateUI: (data: unknown) => void) {
+  //#region pollingVanillaJs
+  let intervalId: number | null = null;
+
+  async function poll() {
+    const result = await app.callServerTool({
+      name: "poll-data",
+      arguments: {},
+    });
+    updateUI(result.structuredContent);
+  }
+
+  function startPolling() {
+    if (intervalId !== null) return;
+    poll();
+    intervalId = window.setInterval(poll, 2000);
+  }
+
+  function stopPolling() {
+    if (intervalId === null) return;
+    clearInterval(intervalId);
+    intervalId = null;
+  }
+
+  // Clean up when host tears down the view
+  app.onteardown = async () => {
+    stopPolling();
+    return {};
+  };
+  //#endregion pollingVanillaJs
+}
+
+/**
+ * Example: Polling for live data (React)
+ */
+function pollingReact(
+  app: App | null, // via useApp()
+) {
+  const [data, setData] = useState<unknown>();
+
+  //#region pollingReact
+  useEffect(() => {
+    if (!app) return;
+    let cancelled = false;
+
+    async function poll() {
+      const result = await app!.callServerTool({
+        name: "poll-data",
+        arguments: {},
+      });
+      if (!cancelled) setData(result.structuredContent);
+    }
+
+    poll();
+    const id = setInterval(poll, 2000);
+    return () => {
+      cancelled = true;
+      clearInterval(id);
+    };
+  }, [app]);
+  //#endregion pollingReact
+}
+
+/**
  * Example: Server-side chunked data tool (app-only)
  */
 function chunkedDataServer(server: McpServer) {
@@ -336,6 +402,8 @@ function visibilityBasedPause(
 }
 
 // Suppress unused variable warnings
+void pollingVanillaJs;
+void pollingReact;
 void chunkedDataServer;
 void chunkedDataClient;
 void hostContextVanillaJs;
