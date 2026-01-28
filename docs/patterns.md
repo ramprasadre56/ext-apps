@@ -32,7 +32,8 @@ registerAppTool(
 );
 ```
 
-_See [`examples/system-monitor-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/system-monitor-server) for a full implementation of this pattern._
+> [!NOTE]
+> For full examples that implement this pattern, see: [`examples/system-monitor-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/system-monitor-server) and [`examples/pdf-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/pdf-server).
 
 ## Reading large amounts of data via chunked tool calls
 
@@ -156,7 +157,8 @@ loadDataInChunks(resourceId, (loaded, total) => {
 });
 ```
 
-_See [`examples/pdf-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/pdf-server) for a full implementation of this pattern._
+> [!NOTE]
+> For a full example that implements this pattern, see: [`examples/pdf-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/pdf-server).
 
 ## Giving errors back to the model
 
@@ -279,7 +281,8 @@ function MyApp() {
 }
 ```
 
-_See [`examples/basic-server-vanillajs/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/basic-server-vanillajs) and [`examples/basic-server-react/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/basic-server-react) for full implementations of this pattern._
+> [!NOTE]
+> For full examples that implement this pattern, see: [`examples/basic-server-vanillajs/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/basic-server-vanillajs) and [`examples/basic-server-react/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/basic-server-react).
 
 ## Entering / exiting fullscreen
 
@@ -329,7 +332,8 @@ In fullscreen mode, remove the container's border radius so content extends to t
 }
 ```
 
-_See [`examples/shadertoy-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/shadertoy-server) for a full implementation of this pattern._
+> [!NOTE]
+> For full examples that implement this pattern, see: [`examples/shadertoy-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/shadertoy-server), [`examples/pdf-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/pdf-server), and [`examples/map-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/map-server).
 
 ## Passing contextual information from the App to the model
 
@@ -352,7 +356,8 @@ await app.updateModelContext({
 });
 ```
 
-_See [`examples/map-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/map-server) for a full implementation of this pattern._
+> [!NOTE]
+> For full examples that implement this pattern, see: [`examples/map-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/map-server) and [`examples/transcript-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/transcript-server).
 
 ## Sending large follow-up messages
 
@@ -377,7 +382,8 @@ await app.sendMessage({
 });
 ```
 
-_See [`examples/transcript-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/transcript-server) for a full implementation of this pattern._
+> [!NOTE]
+> For a full example that implements this pattern, see: [`examples/transcript-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/transcript-server).
 
 ## Persisting view state
 
@@ -443,7 +449,8 @@ app.ontoolresult = (result) => {
 // e.g., saveState({ currentPage: 5 });
 ```
 
-_See [`examples/map-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/map-server) for a full implementation of this pattern._
+> [!NOTE]
+> For full examples that implement this pattern, see: [`examples/pdf-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/pdf-server) (persists current page) and [`examples/map-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/map-server) (persists camera position).
 
 ## Pausing computation-heavy views when offscreen
 
@@ -471,7 +478,8 @@ app.onteardown = async () => {
 };
 ```
 
-_See [`examples/shadertoy-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/shadertoy-server) for a full implementation of this pattern._
+> [!NOTE]
+> For full examples that implement this pattern, see: [`examples/shadertoy-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/shadertoy-server) and [`examples/threejs-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/threejs-server).
 
 ## Lowering perceived latency
 
@@ -498,4 +506,5 @@ app.ontoolinput = (params) => {
 > [!IMPORTANT]
 > Partial arguments are "healed" JSON — the host closes unclosed brackets/braces to produce valid JSON. This means objects may be incomplete (e.g., the last item in an array may be truncated). Don't rely on partial data for critical operations; use it only for preview UI.
 
-_See [`examples/threejs-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/threejs-server) for a full implementation of this pattern._
+> [!NOTE]
+> For full examples that implement this pattern, see: [`examples/shadertoy-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/shadertoy-server) and [`examples/threejs-server/`](https://github.com/modelcontextprotocol/ext-apps/tree/main/examples/threejs-server).
